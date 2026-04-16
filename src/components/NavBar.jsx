@@ -9,7 +9,7 @@ export default function NavBar() {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <div className="logo">🎬 Benflix</div>
+          <div className="logo"> Benflix</div>
         </div>
 
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>

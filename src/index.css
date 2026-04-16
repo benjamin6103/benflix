@@ -13,8 +13,9 @@
   --text-secondary: #b3b3b3;
   --text-muted: #808080;
   --card-bg: #2f2f2f;
-  --transition-fast: 150ms ease;
-  --transition-default: 300ms ease;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-default: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-entrance: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 html {
@@ -30,10 +31,12 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.5;
+  will-change: scroll-position;
 }
 
 #root {
   width: 100%;
+  transform: translateZ(0);
 }
 
 /* Scrollbar Styling */

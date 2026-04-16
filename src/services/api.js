@@ -1,8 +1,35 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY || 'YOUR_TMDB_API_KEY';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
+// Simple cache implementation
+const cache = new Map();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+function getCached(key) {
+  const item = cache.get(key);
+  if (!item) return null;
+  
+  if (Date.now() > item.expiry) {
+    cache.delete(key);
+    return null;
+  }
+  
+  return item.data;
+}
+
+function setCache(key, data) {
+  cache.set(key, {
+    data,
+    expiry: Date.now() + CACHE_DURATION,
+  });
+}
+
 export async function getPopularMovies(page = 1, genreId = null, sortBy = 'popularity.desc') {
   try {
+    const cacheKey = `movies_${page}_${genreId}_${sortBy}`;
+    const cached = getCached(cacheKey);
+    if (cached) return cached;
+
     const params = new URLSearchParams({
       api_key: API_KEY,
       page: page,
@@ -18,7 +45,9 @@ export async function getPopularMovies(page = 1, genreId = null, sortBy = 'popul
       throw new Error(`API request failed: ${response.statusText}`);
     }
     const data = await response.json();
-    return data.results || [];
+    const results = data.results || [];
+    setCache(cacheKey, results);
+    return results;
   } catch (error) {
     console.error('Error fetching popular movies:', error);
     return [];
@@ -27,6 +56,10 @@ export async function getPopularMovies(page = 1, genreId = null, sortBy = 'popul
 
 export async function getGenres() {
   try {
+    const cacheKey = 'genres';
+    const cached = getCached(cacheKey);
+    if (cached) return cached;
+
     const params = new URLSearchParams({
       api_key: API_KEY,
     });
@@ -36,7 +69,9 @@ export async function getGenres() {
       throw new Error(`API request failed: ${response.statusText}`);
     }
     const data = await response.json();
-    return data.genres || [];
+    const genres = data.genres || [];
+    setCache(cacheKey, genres);
+    return genres;
   } catch (error) {
     console.error('Error fetching genres:', error);
     return [];

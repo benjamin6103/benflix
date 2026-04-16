@@ -1,11 +1,69 @@
 .skeleton-card {
-  aspect-ratio: 2 / 3;
-  width: 100%;
-  border-radius: var(--radius-md);
-  background: var(--bg-surface);
-  position: relative;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: var(--shadow-surface);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  will-change: opacity;
+  contain: layout style paint;
+}
+
+.skeleton-poster {
+  width: 100%;
+  padding-bottom: 150%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite ease;
+}
+
+.skeleton-info {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skeleton-title {
+  height: 1rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite ease;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  height: 0.75rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite ease 0.1s;
+  border-radius: 4px;
+  width: 70%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: calc(200% + 100px) 0;
+  }
 }
 
 .skeleton-card::before {

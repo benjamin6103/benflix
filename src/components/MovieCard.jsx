@@ -6,13 +6,18 @@ const MovieCard = ({ movie, onClick }) => {
     ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
     : 'https://via.placeholder.com/200x300?text=No+Image';
 
+  const handleClick = React.useCallback(() => {
+    onClick(movie);
+  }, [movie, onClick]);
+
   return (
-    <div className="movie-card" onClick={() => onClick(movie)}>
+    <div className="movie-card" onClick={handleClick} role="button" tabIndex={0}>
       <div className="movie-poster">
         <img
           src={posterUrl}
           alt={movie.title || movie.name}
           loading="lazy"
+          decoding="async"
         />
         <div className="movie-overlay">
           <div className="rating">{movie.vote_average?.toFixed(1)}</div>
@@ -40,4 +45,4 @@ MovieCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default MovieCard;
+export default React.memo(MovieCard);

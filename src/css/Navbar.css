@@ -6,6 +6,8 @@
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.8rem 0;
+  will-change: background;
+  contain: layout style paint;
 }
 
 .navbar-container {
@@ -27,6 +29,8 @@
   color: #e50914;
   letter-spacing: -1px;
   white-space: nowrap;
+  transition: color 0.2s ease;
+  will-change: color;
 }
 
 .navbar-menu {
@@ -40,8 +44,9 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   white-space: nowrap;
+  will-change: color;
 }
 
 .nav-link:hover {
