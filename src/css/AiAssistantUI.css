@@ -1,0 +1,88 @@
+.ai-assistant-container {
+  margin: 2rem 0;
+  padding: 0;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.ai-chat-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 159, 28, 0.05);
+  border: 1px solid rgba(255, 159, 28, 0.15);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+  margin-bottom: 2rem;
+}
+
+.ai-avatar {
+  font-size: 2.5rem;
+  background: var(--bg-surface);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  border: 2px solid var(--primary);
+  flex-shrink: 0;
+}
+
+.ai-message {
+  flex: 1;
+}
+
+.ai-name {
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.ai-text {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Typing Indicator Animation */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+}
+
+.typing-indicator span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px var(--primary); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-recommendations {
+  /* Using standard movies-grid */
+  position: relative;
+  z-index: 1;
+}

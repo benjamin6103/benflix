@@ -1,0 +1,269 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalFadeIn var(--transition-normal);
+}
+
+.modal-background-blur {
+  position: absolute;
+  inset: -10%; /* extend to hide blur edges */
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) brightness(0.3);
+  z-index: 1;
+}
+
+.modal-content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.movie-modal {
+  background: var(--bg-surface);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  border-radius: var(--radius-lg);
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  animation: modalSlideUp var(--transition-normal);
+}
+
+/* Custom Webkit Scrollbar for Modal */
+.movie-modal::-webkit-scrollbar {
+  width: 8px;
+}
+.movie-modal::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+  border-radius: 4px;
+}
+.movie-modal::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-glass);
+  border-radius: 4px;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(50px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.modal-hero {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.modal-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-surface) 0%, transparent 60%);
+}
+
+.modal-body {
+  padding: 0 3rem 3rem;
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+}
+
+.modal-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.modal-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.meta-year {
+  color: var(--text-muted);
+}
+
+.modal-overview {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-btn {
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-btn {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.watchlist-btn {
+  background: var(--primary);
+  color: #000;
+  border: 2px solid var(--primary);
+  font-weight: 700;
+}
+
+.watchlist-btn:hover {
+  background: rgba(255, 159, 28, 0.9);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 159, 28, 0.3);
+}
+
+.watchlist-btn.active {
+  background: var(--primary);
+  color: #000;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(255, 159, 28, 0.4);
+}
+
+.favorite-btn {
+  background: rgba(255, 159, 28, 0.2);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.favorite-btn:hover {
+  background: rgba(255, 159, 28, 0.3);
+  transform: scale(1.05);
+}
+
+.favorite-btn.active {
+  background: var(--primary);
+  color: #000;
+  font-weight: 800;
+}
+
+.share-menu-container {
+  position: relative;
+}
+
+.share-btn {
+  background: rgba(100, 200, 255, 0.2);
+  color: #64c8ff;
+  border: 2px solid #64c8ff;
+}
+
+.share-btn:hover {
+  background: rgba(100, 200, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.share-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background: var(--bg-surface);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-width: 140px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  animation: slideDown 0.2s ease-out;
+}
+
+.share-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.share-menu button:hover {
+  background: rgba(255, 159, 28, 0.2);
+  color: var(--primary);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.copy-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary);
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  animation: slideUp 0.3s ease-out;
+  z-index: 3000;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
