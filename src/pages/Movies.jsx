@@ -86,14 +86,20 @@ export default function Movies() {
 
   return (
     <div className="movies-page">
-      {/* Page Header */}
-      <div className="movies-header">
-        <h1>🎬 Movies</h1>
-        <p>Discover thousands of movies</p>
+      {/* Hero Banner */}
+      <div className="movies-hero">
+        <div className="movies-hero-content">
+          <div className="movies-header">
+            <h1>🎬 Movies</h1>
+            <p>Discover thousands of movies</p>
+          </div>
+        </div>
       </div>
 
-      {/* Controls */}
-      <div className="movies-controls container">
+      {/* Main Content */}
+      <div className="movies-wrapper">
+        {/* Controls */}
+        <div className="movies-controls">
         <button 
           className="filter-toggle"
           onClick={() => setShowFilters(!showFilters)}
